@@ -1,0 +1,11 @@
+{
+  "name": "exp3-scaling-benchmark",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.2.1",
+    "express": "^4.19.2",
+    "ioredis": "^5.4.1",
+    "socket.io": "^4.7.5"
+  }
+}

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  app-node-1:
+    build: .
+    environment:
+      - PORT=3000
+      - NODE_ID=node-1
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  app-node-2:
+    build: .
+    environment:
+      - PORT=3000
+      - NODE_ID=node-2
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  app-node-3:
+    build: .
+    environment:
+      - PORT=3000
+      - NODE_ID=node-3
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  app-node-4:
+    build: .
+    environment:
+      - PORT=3000
+      - NODE_ID=node-4
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  load-balancer:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app-node-1
