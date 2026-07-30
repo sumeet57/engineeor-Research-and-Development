@@ -1,0 +1,5 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY backend.js .
+EXPOSE 5000
+CMD ["node", "backend.js"]

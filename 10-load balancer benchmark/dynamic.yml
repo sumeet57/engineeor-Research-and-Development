@@ -1,0 +1,14 @@
+http:
+  routers:
+    to-backends:
+      rule: "PathPrefix(`/`)"
+      service: backend-service
+      entryPoints:
+        - web
+
+  services:
+    backend-service:
+      loadBalancer:
+        servers:
+          - url: "http://backend1:5000"
+          - url: "http://backend2:5000"
